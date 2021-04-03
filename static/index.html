@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="css/milligram.min.css">
+    <style>
+        html, body, .container, .row {
+            height: 100%;
+        }
+
+        .formcontainer {
+            background: transparent;
+            padding: 30px;
+        }
+
+        .formcontainer form, .formcontainer fieldset{
+            margin:0;
+        }
+
+        .secretcontainer {
+            background: transparent;
+            padding: 30px;
+        }
+
+        #registerContainer, #mainContainer {
+            display: none;
+        }
+        .button-blue {
+            background-color: #003975 !important;
+            border-color: #003975 !important;
+        }
+
+        .button-blue:hover {
+            /* background-color: #ffffff !important; */
+            background-color: transparent !important;
+            color: #003975 !important;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row row-center">
+
+            <div class="column" id="registerContainer">
+                <div class="formcontainer" style="max-width: 50%; height: auto; margin: auto;"><img src="img/logo.png" alt=""></div>
+                <div class="formcontainer register">
+                    <h3>Registration page</h3>
+                    <form id="register">
+                      <fieldset>
+                        <label for="name">Full Name</label>
+                        <input type="text" name="name">
+                        <label for="username">User Name</label>
+                        <input type="text" name="username">
+
+                        <input class="button button-blue" type="submit" value="Register">
+                      </fieldset>
+                    </form>
+
+                    <a href="#" id="toLogin" style="color: #003975;">Already registered? Login page</a>
+                </div>
+            </div>
+
+            <div class="column" id="loginContainer">
+                <div class="formcontainer" style="max-width: 50%; height: auto; margin: auto;"><img src="img/logo.png" alt=""></div>
+                <div class="formcontainer login">
+                    <h3>Login page</h3>
+                    <form id="login">
+                      <fieldset>
+                        <label for="username">User Name</label>
+                        <input type="text" name="username">
+
+                        <input class="button button-blue" type="submit" value="Login">
+                      </fieldset>
+                    </form>
+
+                    <a href="#" id="toRegistration" style="color: #003975;">Not registered yet? Registration</a>
+                </div>
+            </div>
+
+            <div class="column column-50 column-offset-25" id="mainContainer">
+                <div style="max-width: 50%; height: auto; margin: auto;"><img src="img/logo.png" alt=""></div>
+                
+                <div class="secretcontainer">
+                    <h2>Hi <span id="name"></span>!</h2>
+                    <h4>You have successfully logged in to Internet Banking of Kotak</h4>
+                    <button id="logoutButton" class="button-blue">Logout</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/helpers.js"></script>
+    <script src="js/base64url-arraybuffer.js"></script>
+    <script src="js/view.js"></script>
+    <script src="js/password.auth.js"></script>
+    <script src="js/webauthn.auth.js"></script>
+    <script>
+        $(document).ready(() => {
+            checkIfLoggedIn()
+            .then((response) => {
+                if(response)
+                    return loadMainContainer()
+            })
+        })
+    </script>
+</body>
+</html>
